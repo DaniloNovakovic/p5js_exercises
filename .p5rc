@@ -3,6 +3,7 @@
   "projects": [
     "simplePaint",
     "simpleShapes2d",
-    "randomShapes"
+    "randomShapes",
+    "bouncingBall"
   ]
 }
