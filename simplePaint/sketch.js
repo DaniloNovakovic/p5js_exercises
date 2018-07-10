@@ -1,6 +1,6 @@
 function setup() {
     createCanvas(500, 400);
-    background(200, 200, 0);
+    background(0);
     stroke(255);
 }
 
@@ -9,8 +9,8 @@ function draw() {
 }
 var drawEnabled = false;
 
-var ellipseWidth = 1,
-    ellipseHeight = 1;
+var ellipseWidth = 20,
+    ellipseHeight = 20;
 
 var lastPosX = 0,
     lastPosY = 0;
@@ -23,13 +23,18 @@ function mousePressed() {
 
 function mouseDragged() {
     if (drawEnabled) {
+        stroke(random(0, 255), random(0, 255), random(0, 255));
         line(lastPosX, lastPosY, mouseX, mouseY);
         lastPosX = mouseX;
         lastPosY = mouseY;
+
+        fill(random(0, 255), random(0, 255), random(0, 255));
+        ellipse(mouseX, mouseY, ellipseWidth, ellipseHeight);
     }
 }
 
 function mouseClicked() {
+    fill(random(0, 255), random(0, 255), random(0, 255));
     ellipse(mouseX, mouseY, ellipseWidth, ellipseHeight);
 }
 

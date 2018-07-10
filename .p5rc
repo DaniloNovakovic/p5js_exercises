@@ -2,6 +2,7 @@
   "name": "p5js_exercises",
   "projects": [
     "simplePaint",
-    "simpleShapes2d"
+    "simpleShapes2d",
+    "randomShapes"
   ]
 }
