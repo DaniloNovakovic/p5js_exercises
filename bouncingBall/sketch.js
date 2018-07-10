@@ -8,10 +8,16 @@ var ball = {
     x: 0,
     y: 0,
     diameter: 50,
-    speed: 3,
+    xspeed: 4,
+    yspeed: 4,
     moveLeft: true,
     moveUp: true
 };
+
+var xSpeedMin = 2,
+    xSpeedMax = 7,
+    ySpeedMin = 2,
+    ySpeedMax = 7;
 
 function setup() {
     createCanvas(400, 300);
@@ -21,44 +27,58 @@ function setup() {
 
 function draw() {
     background(0);
-    stroke(col.r, col.g, col.b);
+    display(ball, col);
+    bounce(ball, col);
+    move(ball);
+}
+
+function display(argBall, argCol) {
+    stroke(argCol.r, argCol.g, argCol.b);
     strokeWeight(4);
     noFill();
-    ellipse(ball.x, ball.y, ball.diameter);
+    ellipse(argBall.x, argBall.y, argBall.diameter);
+}
 
-    if (ball.x + ball.diameter / 2 >= width) {
-        ball.moveLeft = true;
-        col.r = random(0, 255);
-        col.g = random(0, 255);
-        col.b = random(0, 255);
+function bounce(argBall, argCol) {
+    // Bounce left/right
+    if (argBall.x + argBall.diameter / 2 >= width) {
+        argBall.moveLeft = true;
+        argBall.xspeed = random(xSpeedMin, xSpeedMax);
+        setRandCol(argCol);
     } else if (ball.x - ball.diameter / 2 <= 0) {
-        ball.moveLeft = false;
-        col.r = random(0, 255);
-        col.g = random(0, 255);
-        col.b = random(0, 255);
+        argBall.moveLeft = false;
+        argBall.xspeed = random(xSpeedMin, xSpeedMax);
+        setRandCol(argCol);
     }
 
-    if (ball.y + ball.diameter / 2 >= height) {
-        ball.moveUp = true;
-        col.r = random(0, 255);
-        col.g = random(0, 255);
-        col.b = random(0, 255);
+    // Bounce up/down
+    if (argBall.y + argBall.diameter / 2 >= height) {
+        argBall.moveUp = true;
+        argBall.yspeed = random(ySpeedMin, ySpeedMax);
+        setRandCol(argCol);
     } else if (ball.y - ball.diameter / 2 <= 0) {
-        ball.moveUp = false;
-        col.r = random(0, 255);
-        col.g = random(0, 255);
-        col.b = random(0, 255);
+        argBall.moveUp = false;
+        argBall.yspeed = random(ySpeedMin, ySpeedMax);
+        setRandCol(argCol);
+    }
+}
+
+function setRandCol(argCol) {
+    argCol.r = random(0, 255);
+    argCol.g = random(0, 255);
+    argCol.b = random(0, 255);
+}
+
+function move(argBall) {
+    if (argBall.moveLeft) {
+        argBall.x -= argBall.xspeed;
+    } else {
+        argBall.x += argBall.xspeed;
     }
 
-    if (ball.moveLeft) {
-        ball.x -= ball.speed;
+    if (argBall.moveUp) {
+        argBall.y -= argBall.yspeed;
     } else {
-        ball.x += ball.speed;
-    }
-
-    if (ball.moveUp) {
-        ball.y -= ball.speed;
-    } else {
-        ball.y += ball.speed;
+        argBall.y += argBall.yspeed;
     }
 }
