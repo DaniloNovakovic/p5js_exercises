@@ -4,6 +4,7 @@
     "simplePaint",
     "simpleShapes2d",
     "randomShapes",
-    "bouncingBall"
+    "bouncingBall",
+    "simpleBubbles"
   ]
 }
