@@ -2,9 +2,9 @@
   "name": "p5js_exercises",
   "projects": [
     "simplePaint",
-    "simpleShapes2d",
     "randomShapes",
     "bouncingBall",
-    "simpleBubbles"
+    "simpleBubbles",
+    "letterShuffler"
   ]
 }
