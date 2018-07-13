@@ -2,10 +2,7 @@
 
 ## 7/10/2018:<br>
 # Online way:<br>
-- Because i am a noob i don't know currently how to create menu for github pages. So if you want to test/try out a js project you will
-have to add project name to this link https://danilonovakovic.github.io/p5js_exercises/ <br>
-example: for project 'simplePaint' link will be https://danilonovakovic.github.io/p5js_exercises/simplePaint
-<br><br>
+- Just go to https://danilonovakovic.github.io/p5js_exercises/ and there you will have menu with links to projects<br>
 
 # Offline way:
 - If you clone this repository you can go to this folder and do command (assuming you have npm p5 packet installed) in command prompt or terminal : p5 server <br>
