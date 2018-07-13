@@ -1,6 +1,4 @@
-# p5js_exercises
-
-## 7/10/2018:<br>
+## p5js_exercises
 # Online way:<br>
 - Just go to https://danilonovakovic.github.io/p5js_exercises/ and there you will have menu with links to projects<br>
 
