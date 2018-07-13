@@ -1,18 +1,70 @@
 let balls = [];
 let copyOnHit = false;
 let resizeCopy = false;
-let maxBalls = 200;
+let colorsOn = false;
+let maxBalls = 500;
 let maxBallSize = 35;
 let minBallSize = 1;
-let colorsOn = false;
 let xSpeedMin = 2;
 let xSpeedMax = 7;
 let ySpeedMin = 2;
 let ySpeedMax = 7;
 
+let nBallsInput;
+let maxBallsInput;
+
 function setup() {
     createCanvas(600, 400);
-    let nBalls = parseInt(prompt("Enter number of balls:"), 10);
+    let nBalls = 1;
+    createBalls(nBalls);
+
+    let para = createP('Number of balls: ');
+    nBallsInput = createInput('1', 'number');
+    nBallsInput.parent(para);
+    nBallsInput.size(40);
+
+    let para2 = createP('Max number of balls: ');
+    para2.parent(para);
+    maxBallsInput = createInput(maxBalls, 'number');
+    maxBallsInput.parent(para2);
+    maxBallsInput.size(40);
+
+    let resetBtn = createButton('Reset');
+    resetBtn.parent(para);
+    resetBtn.style('margin-left', '10px');
+    resetBtn.mouseClicked(resetBtnClicked);
+
+    let checkbox = createCheckbox('Enable colors ', false);
+    checkbox.changed(checkboxColorsEnabled);
+    checkbox = createCheckbox('Copy on hit', false);
+    checkbox.changed(checkboxCopyOnHitEnabled);
+    checkbox = createCheckbox('Resize copy', false);
+    checkbox.changed(checkboxResizeCopy);
+}
+
+function checkboxResizeCopy() {
+    resizeCopy = this.checked();
+}
+
+function checkboxCopyOnHitEnabled() {
+    copyOnHit = this.checked();
+}
+
+function checkboxColorsEnabled() {
+    colorsOn = this.checked();
+}
+
+function resetBtnClicked() {
+    maxBalls = maxBallsInput.value();
+    if (maxBalls < 0) {
+        maxBalls = 0;
+    }
+    let nBalls = nBallsInput.value();
+    if (nBalls < 0) {
+        nBalls = 0;
+    } else if (nBalls > maxBalls) {
+        nBalls = maxBalls;
+    }
     createBalls(nBalls);
 }
 
