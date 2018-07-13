@@ -9,7 +9,7 @@ var col = {
 }
 
 function setup() {
-    createCanvas(400, 300);
+    createCanvas(600, 400);
     background(col.red, col.green, col.blue);
 }
 

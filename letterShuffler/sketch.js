@@ -1,12 +1,21 @@
 var textbox;
 var randChars = [];
 var toDelete = [];
+var isStartingState = true;
 
 function setup() {
     noCanvas();
-    textbox = createInput('');
+    textbox = createInput('Enter text here...');
     textbox.input(updateText);
+    textbox.mouseClicked(clearIfStartState);
     textbox.style("margin-left", "45px");
+}
+
+function clearIfStartState() {
+    if (isStartingState) {
+        textbox.value('');
+        isStartingState = false;
+    }
 }
 
 function addElement(str) {
