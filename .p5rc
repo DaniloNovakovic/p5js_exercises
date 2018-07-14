@@ -5,6 +5,7 @@
     "randomShapes",
     "bouncingBall",
     "simpleBubbles",
-    "letterShuffler"
+    "letterShuffler",
+    "atomSimulation"
   ]
 }
