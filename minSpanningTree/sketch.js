@@ -4,6 +4,7 @@ var resetBtn;
 function setup() {
     createCanvas(600, 400);
     background(0);
+    createP('');
     resetBtn = createButton('Reset');
     resetBtn.mousePressed(resetBtnClicked);
 }
