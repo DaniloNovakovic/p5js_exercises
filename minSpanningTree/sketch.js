@@ -25,7 +25,8 @@ function mousePressed() {
 
 function drawShortestTree(vertices) {
     drawVertices(vertices);
-    connectVertices(vertices);
+    let edges = connectVertices(vertices);
+    drawEdges(edges);
 }
 
 function drawVertices(vertices) {
@@ -37,53 +38,48 @@ function drawVertices(vertices) {
 }
 
 function connectVertices(vertices) {
+    let edges = [];
     let idReached = [];
 
     idReached.push(Math.floor(random(vertices.length)));
 
     while (idReached.length < vertices.length) {
-        let minDistances = [];
-        let idMinVerts = [];
+        let minDist = Infinity;
+        let idFrom = -1;
+        let idTo = -1;
 
         for (let idCurrReached of idReached) {
-            let minDist = Infinity;
-            let idMinVert = -1;
-            let from = vertices[idCurrReached];
-
             for (let i = 0; i < vertices.length; ++i) {
                 if (idReached.includes(i)) {
                     continue;
                 }
+                let from = vertices[idCurrReached];
                 let to = vertices[i];
                 let d = dist(from.x, from.y, to.x, to.y);
                 if (d < minDist) {
                     minDist = d;
-                    idMinVert = i;
+                    idFrom = idCurrReached;
+                    idTo = i;
                 }
-
             }
-            idMinVerts.push(idMinVert);
-            minDistances.push(minDist);
         }
 
-        let idMinDist = findShortestId(minDistances);
-        let idMinVert = idMinVerts[idMinDist];
+        edges.push({
+            from: vertices[idFrom],
+            to: vertices[idTo]
+        });
 
-        let from = vertices[idReached[idMinDist]];
-        let to = vertices[idMinVert];
-
-        stroke(255);
-        line(from.x, from.y, to.x, to.y);
-        idReached.push(idMinVert);
+        idReached.push(idTo);
     }
+
+    return edges;
 }
 
-function findShortestId(argArray) {
-    let idShortest = 0;
-    for (let i = 1; i < argArray.length; ++i) {
-        if (argArray[i] < argArray[idShortest]) {
-            idShortest = i;
-        }
+function drawEdges(edges) {
+    stroke(255);
+    for (let edge of edges) {
+        var from = edge.from;
+        var to = edge.to;
+        line(from.x, from.y, to.x, to.y);
     }
-    return idShortest;
 }
