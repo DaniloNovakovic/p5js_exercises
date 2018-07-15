@@ -1,4 +1,7 @@
-var globalVertices = [];
+var tree = {
+    vertices: [],
+    edges: []
+};
 var resetBtn;
 
 function setup() {
@@ -7,36 +10,53 @@ function setup() {
     createP('');
     resetBtn = createButton('Reset');
     resetBtn.mousePressed(resetBtnClicked);
+    setInterval(changeColor, 1000);
+}
+
+function draw() {
+    background(0);
+    drawTree(tree);
+}
+
+function changeColor() {
+    fill(random(0, 255), random(0, 255), random(0, 255));
+    stroke(random(0, 255), random(0, 255), random(0, 255));
 }
 
 function resetBtnClicked() {
     background(0);
-    globalVertices.length = 0;
+    tree.vertices.length = 0;
+    tree.edges.length = 0;
 }
 
 function mousePressed() {
     if (mouseX >= 0 && mouseX < width && mouseY >= 0 && mouseY < height) {
         var v = createVector(mouseX, mouseY);
-        globalVertices.push(v);
-        background(0);
-        drawShortestTree(globalVertices);
+        tree.vertices.push(v);
+        tree.edges = connectVertices(tree.vertices);
     }
 }
 
-function drawShortestTree(vertices) {
-    drawVertices(vertices);
-    let edges = connectVertices(vertices);
-    drawEdges(edges);
+function drawTree(argTree) {
+    drawEdges(argTree.edges);
+    drawVertices(argTree.vertices);
 }
 
 function drawVertices(vertices) {
-    fill(255);
-    stroke(255);
     for (let i = 0; i < vertices.length; ++i) {
         ellipse(vertices[i].x, vertices[i].y, 15);
     }
 }
 
+function drawEdges(edges) {
+    for (let edge of edges) {
+        var from = edge.from;
+        var to = edge.to;
+        line(from.x, from.y, to.x, to.y);
+    }
+}
+
+// Connects vertices by Prim's algorithm (Min Spanning Tree)
 function connectVertices(vertices) {
     let edges = [];
     let idReached = [];
@@ -73,13 +93,4 @@ function connectVertices(vertices) {
     }
 
     return edges;
-}
-
-function drawEdges(edges) {
-    stroke(255);
-    for (let edge of edges) {
-        var from = edge.from;
-        var to = edge.to;
-        line(from.x, from.y, to.x, to.y);
-    }
 }
