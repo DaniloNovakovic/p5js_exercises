@@ -1,0 +1,12 @@
+{
+  "name": "p5js_exercises",
+  "projects": [
+    "simplePaint",
+    "randomShapes",
+    "bouncingBall",
+    "simpleBubbles",
+    "letterShuffler",
+    "atomSimulation",
+    "minSpanningTree"
+  ]
+}

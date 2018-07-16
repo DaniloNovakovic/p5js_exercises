@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>letterShuffler</title>
+    <title>Danilo - Software | p5.js projects</title>
 
     <script src="libraries/p5.js"></script>
     <script src="libraries/p5.dom.js"></script>
@@ -28,10 +28,20 @@
         }
 
         .projects {
-            color: purple;
+            color: #ED225D;
             background-color: transparent;
             font-family: monospace;
             font-size: 13pt;
+        }
+
+        a {
+            color: #ED225D;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            text-decoration-style: dashed;
         }
     </style>
 </head>
@@ -39,14 +49,7 @@
 <body>
     <div class="projects">
         <h1>Projects: </h1>
-        <ul>
-            <li><a href="minSpanningTree/index.html">minSpanningTree</a></li>
-            <li><a href="atomSimulation/index.html">atomSimulation</a></li>
-            <li><a href="bouncingBall/index.html">bouncingBall</a></li>
-            <li><a href="letterShuffler/index.html">letterShuffler</a></li>
-            <li><a href="randomShapes/index.html">randomShapes</a></li>
-            <li><a href="simpleBubbles/index.html">simpleBubbles</a></li>
-            <li><a href="simplePaint/index.html">simplePaint</a></li>
+        <ul id="projectsList">
         </ul>
     </div>
 </body>
