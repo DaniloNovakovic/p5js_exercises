@@ -1,4 +1,4 @@
-var api = "http://api.giphy.com/v1/gifs/search?q=";
+var api = "https://api.giphy.com/v1/gifs/search?q=";
 var name = "";
 var api_key = '&api_key=5bqp72P9orXVJcOyiRvXsdKTzFdql5il';
 var limit = "&limit=5";
