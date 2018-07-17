@@ -8,6 +8,7 @@
     "letterShuffler",
     "atomSimulation",
     "minSpanningTree",
-    "gifFinder"
+    "gifFinder",
+    "domInputBoxCamera"
   ]
 }
