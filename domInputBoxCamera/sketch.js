@@ -3,9 +3,12 @@ var video;
 var cols = 40;
 var rows = 30;
 
+const defaultChar = '▉';
+var selectedChar = defaultChar;
 var boxes = [];
 var pleaseConnectCameraP;
 var cameraConnected = false;
+var inputBoxChar;
 
 function preload() {
     pleaseConnectCameraP = select('#connectCameraMsg');
@@ -25,7 +28,7 @@ function setup() {
     try {
         for (var y = 0; y < rows; ++y) {
             for (var x = 0; x < cols; ++x) {
-                var box = createInput('▉'); // unicode block char U+2588
+                var box = createInput(selectedChar); // unicode block char U+2588
                 box.parent('#mirror');
                 box.style('width', '15px');
                 box.style('background-color', 'black');
@@ -45,13 +48,24 @@ function gotVideo(data) {
             console.log(data);
             cameraConnected = true;
             pleaseConnectCameraP.html('Camera connected!');
-            createP('This camera is made using array of DOM input elements filled with unicode block char U+2588 ');
+            var para = createP(`Select char to fill input boxes with (default - ${defaultChar}): `);
+            inputBoxChar = createInput('');
+            inputBoxChar.parent(para);
+            inputBoxChar.style('width', '15px');
+            inputBoxChar.input(updateSelectedChar);
         } catch(err) {
             console.log(err.message);
         }
     }
 }
-
+function updateSelectedChar() {
+    var chars = this.value();
+    if(chars.length > 0) {
+        selectedChar = chars[0]; 
+    } else {
+        selectedChar = defaultChar;
+    }
+}
 function draw() {
     if(video && cameraConnected) {
         try {
@@ -64,7 +78,7 @@ function draw() {
                     let b = video.pixels[index + 2];
 
                     var ci = x + y * cols;
-
+                    boxes[ci].value(selectedChar);
                     boxes[ci].style('color',`rgb(${r}, ${g}, ${b})`);
                 }
             }
