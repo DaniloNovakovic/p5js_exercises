@@ -42,7 +42,7 @@ function setup() {
 function gotVideo(data) {
     if(data) {
         try {
-            console.log(data.active);
+            console.log(data);
             cameraConnected = true;
             pleaseConnectCameraP.html('Camera connected!');
             createP('This camera is made using array of DOM input elements filled with unicode block char U+2588 ');
@@ -53,7 +53,7 @@ function gotVideo(data) {
 }
 
 function draw() {
-    if(video) {
+    if(video && cameraConnected) {
         try {
             video.loadPixels();
             for (let y = 0; y < video.height; ++y) {
@@ -70,14 +70,11 @@ function draw() {
             }
         } catch(err) {
             console.log(err.message);
-            cameraConnected = false;
             video = null;
         }
-    } else {
-        if(cameraConnected && pleaseConnectCameraP) {
-            pleaseConnectCameraP.html('Camera disconnected, please connect your camera and refresh page...');
-            cameraConnected = false;
-        }
+    } else if(cameraConnected){
+        pleaseConnectCameraP.html('Camera disconnected, please connect your camera and refresh page...');
+        cameraConnected = false;
     }
 
 }
