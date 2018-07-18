@@ -9,6 +9,7 @@
     "atomSimulation",
     "minSpanningTree",
     "gifFinder",
-	"domInputBoxCamera"
+	"domInputBoxCamera",
+	"paintingCamera"
 	]
 }
