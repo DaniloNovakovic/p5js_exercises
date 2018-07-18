@@ -1,8 +1,5 @@
 var video;
 
-var vScale = 16;
-var slider;
-
 var cols = 40;
 var rows = 30;
 
@@ -25,17 +22,21 @@ function setup() {
     noCanvas();
     pixelDensity(1);
 
-    for (var y = 0; y < rows; ++y) {
-        for (var x = 0; x < cols; ++x) {
-            var box = createInput('▉'); // unicode block char U+2588
-            box.parent('#mirror');
-            box.style('width', '15px');
-            box.style('background-color', 'black');
-            box.style('border', '1px  black');
-            boxes.push(box);
+    try {
+        for (var y = 0; y < rows; ++y) {
+            for (var x = 0; x < cols; ++x) {
+                var box = createInput('▉'); // unicode block char U+2588
+                box.parent('#mirror');
+                box.style('width', '15px');
+                box.style('background-color', 'black');
+                box.style('border', '1px  black');
+                boxes.push(box);
+            }
+            var linebreak = createSpan('<br>');
+            linebreak.parent('#mirror');
         }
-        var linebreak = createSpan('<br>');
-        linebreak.parent('#mirror');
+    } catch(err) {
+        console.log(err.message);
     }
 }
 function gotVideo(data) {
